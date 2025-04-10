@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Driven Business Transformation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #ff512f;
+        --secondary: #ff512f;
+        --dark: #0a192f;
+        --light: #f8f9fa;
+        --accent: #ff512f;
+        --gray: #8892b0;
+        --card-bg: rgba(17, 34, 64, 0.6); /* Updated for glass effect */
+        --card-height: 80px;
+        --card-width: 350px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--dark);
+        color: var(--light);
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 25, 47, 0.85);
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: 700;
+      }
+
+      .tagline {
+        font-size: 1.3rem;
+        color: var(--gray);
+        max-width: 700px;
+        margin: 0 auto 2rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        position: relative;
+
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(74, 107, 255, 0.4);
+        z-index: 1;
+        opacity: 1;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(74, 107, 255, 0.6);
+      }
+
+      .cta-button:hover::before {
+        opacity: 1;
+      }
+
+      .cta-button i {
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .cta-button:hover i {
+        transform: translateX(5px);
+      }
+
+      .main-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 4rem;
+        position: relative;
+        min-height: 600px;
+        gap: 2rem;
+      }
+
+      /* Zigzag card positioning */
+      .cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 2rem;
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+      }
+
+      .card-1 {
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+        right: 100px;
+      }
+      .card-2 {
+        grid-column: 3;
+        grid-row: 1;
+        position: relative;
+        left: 100px;
+      }
+      .card-3 {
+        grid-column: 1;
+        grid-row: 2;
+        position: relative;
+        right: 200px;
+      }
+      .card-4 {
+        grid-column: 3;
+        grid-row: 2;
+        position: relative;
+        left: 200px;
+      }
+      .card-5 {
+        grid-column: 1;
+        grid-row: 3;
+        position: relative;
+        right: 200px;
+      }
+      .card-6 {
+        grid-column: 3;
+        grid-row: 3;
+        position: relative;
+        left: 200px;
+      }
+      .card-7 {
+        grid-column: 1;
+        grid-row: 4;
+        position: relative;
+        right: 100px;
+      }
+      .card-8 {
+        grid-column: 3;
+        grid-row: 4;
+        position: relative;
+        left: 100px;
+      }
+
+      .center-diamond {
+        grid-column: 2;
+        grid-row: 1 / span 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .diamond-shape {
+        width: 300px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background: #FF512F; */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        /* border: 1px solid rgba(100, 255, 218, 0.2); */
+        /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); */
+        border-radius: 20px;
+      }
+
+      #center-image {
+        max-width: 80%;
+        max-height: 80%;
+        display: block; /* Remove inline spacing issues */
+        margin: auto; /* Ensure centering in a flex container */
+      }
+
+      .image-scale {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.7));
+      }
+
+      .touch-indicator {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: var(--accent);
+        font-size: 1.5rem;
+        animation: pulse 2s infinite;
+      }
+
+      .feature-card {
+        background: rgba(17, 34, 64, 0.4);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        height: var(--card-height); /* Ensure the height is defined */
+        width: var(--card-width); /* Ensure the width is defined */
+        display: flex;
+        justify-content: center; /* Horizontally center */
+        align-items: center; /* Vertically center */
+        text-align: center;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(100, 255, 218, 0.1) 0%,
+          transparent 100%
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .feature-card h3 i {
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        color: var(--accent);
+      }
+
+      .feature-card p {
+        color: var(--gray);
+        font-size: 1rem;
+        position: relative;
+        z-index: 2;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+
+      .arrow-animation {
+        position: absolute;
+        color: var(--accent);
+        opacity: 0;
+      }
+
+      .arrow-animation {
+        right: 20px;
+        bottom: 20px;
+      }
+
+      /* Enhanced arrow styles */
+      .arrow-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 5;
+        overflow: visible;
+      }
+
+      .arrow-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .arrow-path {
+        stroke: var(--accent);
+        stroke-width: 3;
+        fill: none;
+        stroke-dasharray: 4, 10; /* Creates dotted effect */
+        stroke-linecap: round;
+      }
+
+      /* Processing dot styles */
+      .processing-dot {
+        fill: var(--accent);
+        r: 5;
+        opacity: 0;
+        filter: url(#glow); /* Add glow effect to dot */
+      }
+
+      .arrow-head {
+        fill: var(--accent);
+        opacity: 0;
+        filter: url(#glow); /* Add glow effect to arrow head */
+      }
+
+      /* Glow effect for arrows */
+      .arrow-glow {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(5px);
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        z-index: 6;
+      }
+
+      /* Animation for arrow glow */
+      @keyframes arrowPulse {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Card specific styles */
+      #data-card {
+        position: relative;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #data-card::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 12px;
+        opacity: 0;
+        z-index: 3;
+        animation: pulseBorder 2s infinite;
+      }
+
+      @keyframes pulseBorder {
+        0% {
+          opacity: 0;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.02);
+          box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+        }
+      }
+
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+      }
+
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .cards-container {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+
+        .center-diamond {
+          grid-column: 1;
+          grid-row: auto;
+          margin: 3rem auto;
+          order: 1;
+        }
+
+        .feature-card {
+          grid-column: 1 !important;
+          grid-row: auto !important;
+        }
+
+        .arrow-container {
+          display: none;
+        }
+
+        #data-card::after {
+          display: none;
+        }
+
+        .touch-indicator {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .tagline {
+          font-size: 1.1rem;
+        }
+
+        .feature-card {
+          padding: 1.4rem;
+          height: 200px;
+        }
+
+        .diamond-shape {
+          width: 200px;
+          height: 200px;
+        }
+
+        .cta-button {
+          padding: 0.8rem 1.8rem;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>How We Transform Your Business</h1>
+        <p class="tagline">
+          We help enterprises embrace AI-driven transformation in a strategic,
+          scalable, and sustainable way.
+        </p>
+        <a href="#" class="cta-button" id="ctaButton">
+          See How It Works <i class="fas fa-arrow-right"></i>
+        </a>
+      </header>
+
+      <div class="main-content">
+        <div class="cards-container">
+          <!-- Left side cards -->
+          <div class="feature-card left-card card-1" id="data-card">
+            <h3><i class="fas fa-database"></i> Data Modernization</h3>
+          </div>
+
+          <div class="feature-card right-card card-2" id="speed-card">
+            <h3><i class="fas fa-bolt"></i> Speed</h3>
+          </div>
+
+          <div class="feature-card left-card card-3" id="cloud-card">
+            <h3><i class="fas fa-cloud"></i> Cloud Analytics</h3>
+          </div>
+
+          <div class="feature-card right-card card-4" id="scale-card">
+            <h3><i class="fas fa-expand"></i> Scale</h3>
+          </div>
+
+          <div class="center-diamond">
+            <div class="diamond-shape">
+              <div class="diamond-content">
+                <img src="./unnamed.png" alt="Center Image" id="center-image" />
+                <div class="touch-indicator"></div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-card left-card card-5" id="automation-card">
+            <h3><i class="fas fa-robot"></i> Workflow Automation</h3>
+          </div>
+
+          <div class="feature-card right-card card-6" id="sophistication-card">
+            <h3><i class="fas fa-chart-line"></i> Sophistication</h3>
+          </div>
+
+          <div class="feature-card left-card card-7" id="skills-card">
+            <h3><i class="fas fa-graduation-cap"></i> Skills of the Future</h3>
+          </div>
+
+          <div class="feature-card right-card card-8" id="safety-card">
+            <h3><i class="fas fa-shield-alt"></i> Safety</h3>
+          </div>
+
+          <!-- Center diamond -->
+        </div>
+      
+        <!-- Container for all arrow connections -->
+        <div class="arrow-container" id="arrowContainer"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // CTA Button animation
+        const ctaButton = document.getElementById("ctaButton");
+        ctaButton.addEventListener("click", function (e) {
+          const rect = e.target.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const ripple = document.createElement("span");
+          ripple.className = "ripple";
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+
+          gsap.to(ctaButton, {
+            scale: 0.95,
+            duration: 0.1,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut",
+          });
+        });
+
+        // ScrollTrigger animations for header elements
+        gsap.from("h1", {
+          scrollTrigger: {
+            trigger: "h1",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          y: -30,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+
+        gsap.from(".tagline", {
+          scrollTrigger: {
+            trigger: ".tagline",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          y: -20,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        });
+
+        gsap.from(".cta-button", {
+          scrollTrigger: {
+            trigger: ".cta-button",
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          y: 20,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.2,
+        });
+
+        // ScrollTrigger animations for the main content
+        gsap.to(".main-content", {
+          scrollTrigger: {
+            trigger: ".main-content",
+            start: "top 70%",
+            toggleActions: "play none none none",
+            onEnter: () => runArrowAnimations(),
+          },
+          opacity: 1,
+          duration: 0.5,
+        });
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll(".feature-card");
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        });
+
+        // Floating animation for diamond with ScrollTrigger
+        gsap.to(".center-diamond", {
+          scrollTrigger: {
+            trigger: ".center-diamond",
+            start: "top 70%",
+            end: "bottom 30%",
+            scrub: true,
+          },
+          y: -20,
+          duration: 3,
+          ease: "sine.inOut",
+        });
+
+        // Create arrow connection functions
+        const arrowContainer = document.getElementById("arrowContainer");
+        const centerDiamond = document.querySelector(".center-diamond");
+        const diamondRect = centerDiamond.getBoundingClientRect();
+        const containerRect = document
+          .querySelector(".main-content")
+          .getBoundingClientRect();
+        const centerImage = document.getElementById("center-image");
+
+        // Function to calculate positions relative to container
+        function getRelativePositions(fromElement, toElement) {
+          const fromRect = fromElement.getBoundingClientRect();
+          const toRect = toElement.getBoundingClientRect();
+          const containerRect = document
+            .querySelector(".main-content")
+            .getBoundingClientRect();
+
+          // Calculate positions relative to container
+          let startX, startY, endX, endY;
+
+          if (fromElement.id === "center-image") {
+            // Arrow from center to right card
+            startX = fromRect.left + fromRect.width / 2 - containerRect.left;
+            startY = fromRect.top + fromRect.height / 2 - containerRect.top;
+            endX = toRect.left - containerRect.left;
+            endY = toRect.top + toRect.height / 2 - containerRect.top;
+          } else if (toElement.id === "center-image") {
+            // Arrow from left card to center
+            startX = fromRect.left + fromRect.width - containerRect.left;
+            startY = fromRect.top + fromRect.height / 2 - containerRect.top;
+            endX = toRect.left + toRect.width / 2 - containerRect.left;
+            endY = toRect.top + toRect.height / 2 - containerRect.top;
+          } else {
+            // Default case (shouldn't happen in this design)
+            startX = fromRect.left + fromRect.width / 2 - containerRect.left;
+            startY = fromRect.top + fromRect.height / 2 - containerRect.top;
+            endX = toRect.left + toRect.width / 2 - containerRect.left;
+            endY = toRect.top + toRect.height / 2 - containerRect.top;
+          }
+
+          return { startX, startY, endX, endY };
+        }
+
+        // Function to create an arrow between two elements
+        function createArrow(fromId, toId, color = "#64ffda", delay = 0) {
+          return new Promise((resolve) => {
+            const fromElement = document.getElementById(fromId);
+            const toElement = document.getElementById(toId);
+
+            if (!fromElement || !toElement) {
+              resolve();
+              return;
+            }
+
+            const { startX, startY, endX, endY } = getRelativePositions(
+              fromElement,
+              toElement
+            );
+
+            // Create SVG for this arrow
+            const svg = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "svg"
+            );
+            svg.setAttribute("class", "arrow-svg");
+            svg.style.position = "absolute";
+            svg.style.width = "100%";
+            svg.style.height = "100%";
+            svg.style.left = "0";
+            svg.style.overflow = "visible";
+
+            // Add glow filter definition
+            const defs = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "defs"
+            );
+            const filter = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "filter"
+            );
+            filter.setAttribute("id", "glow");
+            filter.setAttribute("x", "-30%");
+            filter.setAttribute("y", "-30%");
+            filter.setAttribute("width", "160%");
+            filter.setAttribute("height", "160%");
+
+            const feGaussianBlur = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "feGaussianBlur"
+            );
+            feGaussianBlur.setAttribute("stdDeviation", "3");
+            feGaussianBlur.setAttribute("result", "blur");
+
+            const feComposite = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "feComposite"
+            );
+            feComposite.setAttribute("in", "SourceGraphic");
+            feComposite.setAttribute("in2", "blur");
+            feComposite.setAttribute("operator", "over");
+
+            filter.appendChild(feGaussianBlur);
+            filter.appendChild(feComposite);
+            defs.appendChild(filter);
+            svg.appendChild(defs);
+
+            // Create dotted path
+            const path = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path"
+            );
+            path.setAttribute("class", "arrow-path");
+            path.setAttribute("stroke", color);
+            path.setAttribute("stroke-width", "4");
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke-dasharray", "5,15"); // Dotted line
+            path.setAttribute("stroke-linecap", "round");
+
+            // Create processing dot
+            const processingDot = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "circle"
+            );
+            processingDot.setAttribute("class", "processing-dot");
+            processingDot.setAttribute("filter", "url(#glow)"); // Add glow effect
+            processingDot.setAttribute("r", "6");
+            processingDot.setAttribute("fill", color);
+
+            // Create arrow head (triangle shape)
+            const arrowHead = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "polygon"
+            );
+            arrowHead.setAttribute("class", "arrow-head");
+            arrowHead.setAttribute("points", "0,0 10,5 0,10 3,5"); // Arrowhead shape
+            arrowHead.setAttribute("fill", color);
+            arrowHead.setAttribute("opacity", "0");
+
+            // Calculate control points for a smooth curve
+            const midX = startX + (endX - startX) * 0.5;
+            const midY = startY + (endY - startY) * 0.5;
+
+            // Adjust control points based on direction for better curves
+            let controlX1, controlY1, controlX2, controlY2;
+
+            if (startX < endX) {
+              // Rightward arrow (left cards to center)
+              controlX1 = startX + (endX - startX) * 0.4;
+              controlY1 = startY;
+              controlX2 = endX - (endX - startX) * 0.4;
+              controlY2 = endY;
+            } else {
+              // Leftward arrow (center to right cards)
+              controlX1 = startX - (startX - endX) * 0.4;
+              controlY1 = startY;
+              controlX2 = endX + (startX - endX) * 0.4;
+              controlY2 = endY;
+            }
+
+            // Create path data with Bezier curve
+            const pathData = `M${startX},${startY} C${controlX1},${controlY1} ${controlX2},${controlY2} ${endX},${endY}`;
+            path.setAttribute("d", pathData);
+
+            // Calculate angle for arrow head
+            const angle =
+              Math.atan2(endY - controlY2, endX - controlX2) * (180 / Math.PI);
+            arrowHead.setAttribute(
+              "transform",
+              `translate(${endX},${endY}) rotate(${angle})`
+            );
+
+            // Add elements to SVG
+            svg.appendChild(path);
+            svg.appendChild(processingDot);
+            svg.appendChild(arrowHead);
+            arrowContainer.appendChild(svg);
+
+            // Create animation timeline
+            const tl = gsap.timeline({
+              defaults: { ease: "power2.inOut" },
+              delay: delay,
+              onComplete: resolve,
+            });
+
+            // Animate the path drawing
+            tl.fromTo(
+              path,
+              { strokeDashoffset: path.getTotalLength() },
+              { strokeDashoffset: 0, duration: 1 }
+            );
+
+            // Animate the processing dot along the path
+            tl.fromTo(
+              processingDot,
+              { opacity: 0, x: startX, y: startY },
+              { opacity: 1, duration: 0.2 },
+              "<"
+            )
+              .to(processingDot, {
+                motionPath: {
+                  path: pathData,
+                  align: pathData,
+                  alignOrigin: [0.5, 0.5],
+                  autoRotate: true,
+                },
+                duration: 1.2,
+                ease: "power1.inOut",
+              })
+              .to(
+                processingDot,
+                {
+                  opacity: 0,
+                  duration: 0.3,
+                },
+                "-=0.3"
+              )
+              .to(
+                arrowHead,
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                },
+                "-=0.2"
+              )
+              .to(
+                arrowHead,
+                {
+                  opacity: 0,
+                  duration: 0.5,
+                },
+                "+=0.1"
+              );
+
+            if (toId === "center-image") {
+              tl.to(
+                "#center-image",
+                {
+                  scale: 1.05,
+                  duration: 0.3,
+                },
+                "-=0.5"
+              ).to("#center-image", {
+                scale: 1,
+                duration: 0.3,
+              });
+            }
+          });
+        }
+
+        // Clear all existing arrows
+        function clearArrows() {
+          const svgs = document.querySelectorAll(".arrow-svg");
+          svgs.forEach((svg) => svg.remove());
+        }
+
+        // Sequence of arrow animations
+        async function runArrowAnimations() {
+          clearArrows();
+
+          await createArrow("data-card", "center-image", "#FF512F ", 0);
+          await createArrow("center-card", "center-image", "#FF512F ", 0);
+          await createArrow("center-image", "speed-card", "#FF512F ", 0.3);
+          await createArrow("center-image", "scale-card", "#FF512F ", 0.3);
+          await createArrow(
+            "center-image",
+            "sophistication-card",
+            "#64ffda",
+            0.3
+          );
+          await createArrow("center-image", "safety-card", "#64ffda", 0.3);
+
+          await createArrow("cloud-card", "center-image", "#64ffda", 0);
+          await createArrow("center-card", "center-image", "#64ffda", 0);
+          await createArrow("center-image", "speed-card", "#64ffda", 0.3);
+          await createArrow("center-image", "scale-card", "#64ffda", 0.3);
+          await createArrow(
+            "center-image",
+            "sophistication-card",
+            "#64ffda",
+            0.3
+          );
+          await createArrow("center-image", "safety-card", "#64ffda", 0.3);
+
+          await createArrow("automation-card", "center-image", "#64ffda", 0);
+          await createArrow("center-card", "center-image", "#64ffda", 0);
+          await createArrow("center-image", "speed-card", "#64ffda", 0.3);
+          await createArrow("center-image", "scale-card", "#64ffda", 0.3);
+          await createArrow(
+            "center-image",
+            "sophistication-card",
+            "#64ffda",
+            0.3
+          );
+          await createArrow("center-image", "safety-card", "#64ffda", 0.3);
+
+          await createArrow("skills-card", "center-image", "#64ffda", 0);
+          await createArrow("center-card", "center-image", "#64ffda", 0);
+          await createArrow("center-image", "speed-card", "#64ffda", 0.3);
+          await createArrow("center-image", "scale-card", "#64ffda", 0.3);
+          await createArrow(
+            "center-image",
+            "sophistication-card",
+            "#64ffda",
+            0.3
+          );
+          await createArrow("center-image", "safety-card", "#64ffda", 0.3);
+          // Schedule the next run after a delay
+          setTimeout(runArrowAnimations, 3000);
+        }
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function () {
+            clearArrows();
+            runArrowAnimations();
+          }, 200);
+        });
+
+        // Card hover animations
+        cards.forEach((card) => {
+          const glow = document.createElement("div");
+          glow.style.position = "absolute";
+          glow.style.width = "100%";
+          glow.style.height = "100%";
+          glow.style.top = "0";
+          glow.style.left = "0";
+          glow.style.borderRadius = "10px";
+          glow.style.opacity = "0";
+          glow.style.pointerEvents = "none";
+          card.appendChild(glow);
+
+          card.addEventListener("mouseenter", () => {
+            gsap.to(card, {
+              y: -8,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+
+            gsap.to(glow, {
+              opacity: 1,
+              duration: 0.3,
+            });
+
+            const icon = card.querySelector("i");
+            if (icon) {
+              gsap.to(icon, {
+                scale: 1.2,
+                duration: 0.3,
+                yoyo: true,
+                repeat: 1,
+                ease: "power2.inOut",
+              });
+            }
+          });
+
+          card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+              y: 0,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+
+            gsap.to(glow, {
+              opacity: 0,
+              duration: 0.3,
+            });
+          });
+
+          card.addEventListener("click", () => {
+            gsap.to(card, {
+              scale: 1.4,
+              duration: 0.1,
+              yoyo: true,
+              repeat: 1,
+              ease: "power2.inOut",
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
